@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import styles from './SideBar.module.css';
 import logo from '/vite.svg';
+import PropTypes from 'prop-types';
+import { getWeather } from '../GetWeather';
 
-export default function SideBar({ cityName }) {
+export default function SideBar({ cityWeather }) {
   const cities = [
     'Athens',
     'Berlin',
@@ -20,8 +22,15 @@ export default function SideBar({ cityName }) {
     setActive(!active);
   };
 
-  // Execute cityName when active state changes
-  useEffect(() => {}, [active, cityName]);
+  const results = async (e, cityName) => {
+    const weather = await getWeather(e, cityName);
+    if (typeof cityWeather === 'function') {
+      cityWeather(weather);
+    }
+    console.log(weather);
+  };
+
+
 
   return (
     <section className={styles.container}>
@@ -40,7 +49,7 @@ export default function SideBar({ cityName }) {
         {active && (
           <ul className={styles.countries}>
             {cities.map((city) => (
-              <li key={city} onClick={(e) => { cityName(city)}}>
+              <li key={city} onClick={(e) => { results(e, city);}}>
                 {city}
               </li>
             ))}
@@ -66,3 +75,6 @@ export default function SideBar({ cityName }) {
     </section>
   );
 }
+SideBar.propTypes = {
+  cityWeather: PropTypes.func.isRequired,
+};

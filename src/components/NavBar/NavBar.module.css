@@ -1,90 +1,100 @@
 .container {
-  width: 85vw;
+  width: 100%;
   height: 10vh;
-  background: rgba(0, 0, 0, 0.6);
+  background: var(--primary-bg-color);
   display: flex;
 }
-.errorContainer{
-  border: solid red;
+
+.errorContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100vw;
   height: 100vh;
-
 }
-.errorBox{
-  border: solid red;
+
+.errorBox {
   width: 50%;
   height: 50%;
   border-radius: 5px;
-
+  background-color: var(--secondary-bg-color);
 }
-.date{
+
+.date {
   width: 15vw;
   height: 100%;
   padding: 1% 2%;
 }
-.time{
-  color: rgb(230, 237, 243);
+
+.time {
+  color: var(--secondary-text-color);
   font-size: 20px;
 }
-.today{
+
+.today {
   margin-top: 3%;
-  color: rgb(132, 141, 151);
+  color: var(--accent-color);
 }
-.message{
+
+.message {
   margin-top: 2%;
   font-size: 12px;
-  color : rgb(132, 141, 151); 
+  color: var(--accent-color);
 }
-.search{
+
+.search {
   width: 55vw;
   height: 100%;
 }
 
-.form{
+.form {
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.input{
+
+.input {
   width: 60%;
   height: 2rem;
-  border:  1px solid rgb(132, 141, 151);
+  border: 1px solid var(--primary-text-color);
   border-right: none;
   border-radius: 5px 0px 0px 5px;
   outline: none;
-  background-color: rgb(22, 27, 34);
-  color: rgb(132, 141, 151);
+  background-color: var(--secondary-bg-color);
+  color: var(--primary-text-color);
   padding-left: 2%;
   font-size: 16px;
 }
-.submit{
+
+.submit {
   width: 5%;
-  height: 2rem; 
-  border:  1px solid rgb(132, 141, 151);
+  height: 2rem;
+  border: 1px solid var(--primary-text-color);
   border-radius: 0px 5px 5px 0px;
+  border-left: none;
   outline: none;
-  background-color: rgb(132, 141, 151);
-  color: rgb(22, 27, 34);
+  background-color: var(--primary-text-color);
+  color: var(--secondary-bg-color);
   cursor: pointer;
   font-size: 12px;
 }
-.submit:hover{
-  background-color: rgb(22, 27, 34);
-  color: rgb(132, 141, 151);
+
+.submit:hover {
+  background-color: var(--secondary-bg-color);
+  color: var(--primary-text-color);
 }
-.user{
+
+.user {
   width: 15vw;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.userIcon{
+
+.userIcon {
   width: 20%;
   font-size: 20px;
 }

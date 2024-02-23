@@ -1,56 +1,39 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios'
 import './DataBox.css';
+import PropTypes from 'prop-types';
 
-function DataBox() {
-  const [error, setError] = useState('');
-  const [cityWeather, setCityWeather] = useState({});
-  const [forecast, setForecast] = useState('');
-  const [cityName, setCityName] = useState('');
-  const cnt = 8;
-  //TO BE HIDDEN LATER
-  const apiID = process.env.REACT_APP_API_KEY;
-
-  const submitForm =  function (e) {
-    e.preventDefault();
-    getCityWeather()
-
-  };
- const getCityWeather = async () => {
-    try {
-       const response = await axios.get(
-      `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiID}`
-    )
-    setCityWeather(response.data);
-    console.log(cityWeather)
-    } catch (error) {
-      console.error(error.message);
-      setError(error.message);
-    }
-  }
-
-  const cityForecast = async () => {
-    try {
-       const response = await axios.get(
-         `https://api.openweathermap.org/data/2.5/forecast?lat=${cityWeather.coord.lat}&lon=${cityWeather.coord.lon}&cnt=${cnt}&appid=${apiID}`
-       );
-       setForecast(response.data);
-       console.log(forecast)
-    } catch (error) {
-      console.error(error.message);
-      setError(error.message);
-    }
-  }
+function DataBox({ weather }) {
 
   return (
-<section> 
-  <div className='search-container'>
-    <input type='text' placeholder='Search for a city' onChange={(e) => setCityName(e.target.value)}
-    />
-    <button onClick={getCityWeather}>Search</button>
-    </div>
-</section>
+    <section>
+      <div className='main-weather-section-left bg'>
+        <div className='top'>
+ 
+          {weather && (
+            <>
+              <img
+                key={'value'}
+                id='icon'
+                src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
+                alt=''
+              />
+              <h3>{weather.weather[0].main}</h3>
+              <h2 id='degree'>{Math.round(weather.main.temp) + ' ℃'} </h2>
+              <div className='general-info'>
+                <h2 id='city'>{weather.name}</h2>
+                <p id='date'>{new Date().toDateString()}</p>
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+
+      <div className='main-weather-section-right'>
+        <div className='top'></div>
+      </div>
+    </section>
   );
 }
-
+DataBox.propTypes = {
+  weather: PropTypes.object,
+};
 export default DataBox;

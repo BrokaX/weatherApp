@@ -1,20 +1,31 @@
-import  { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import SideBar from './components/SideBar/SideBar';
 import NavBar from './components/NavBar/NavBar';
+import DataBox from './components/DataBox/DataBox';
 
 function App() {
-  const [selectedCity, setSelectedCity] = useState('');
+  const [cityWeather, setCityWeather] = useState(null);
+  const [results, setResults] = useState(null);
 
-  const getCityName = (city) => {
-    setSelectedCity(city);
+  const getCityWeather = (weather) => {
+    setCityWeather(weather);
+    // Clear results when cityWeather is updated
+    setResults(null);
   };
-  useEffect(() => {}, [selectedCity]);
+
+  const getResults = (weather) => {
+    setCityWeather(null);
+    setResults(weather);
+  };
 
   return (
     <div className='App'>
-      <SideBar cityName={getCityName} />
-      <NavBar cityName={selectedCity} />
+      <SideBar cityWeather={getCityWeather} />
+      <div>
+        <NavBar results={getResults} />
+        <DataBox weather={cityWeather || results} />
+      </div>
     </div>
   );
 }

@@ -1,23 +1,26 @@
 import { useState } from 'react';
 import axios from 'axios';
 import styles from './NavBar.module.css';
+import PropTypes from 'prop-types';
 
-function NavBar({ cityName }) {
+export default function NavBar({ results }) {
   const [error, setError] = useState('');
   const [cityWeather, setCityWeather] = useState({});
   const [searchTerm, setSearchTerm] = useState('');
-  const apiID = import.meta.env.REACT_APP_API_KEY;
+  const apiID = import.meta.env.VITE_API_KEY;
 
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiID}`
+        `https://api.openweathermap.org/data/2.5/weather?q=${searchTerm}&units=metric&appid=${apiID}`
       );
       setCityWeather(response.data);
+      results(response.data);
       console.log(cityWeather);
     } catch (error) {
       console.error(error.message);
@@ -29,14 +32,15 @@ function NavBar({ cityName }) {
       {error && (
         <div className={styles.errorContainer}>
           <div className={styles.errorBox}>
-          <button className={styles.errorBtn} onClick={() => setError('')}>
-            X
-          </button>
-          <p className={styles.error}>{error}</p>
-          <p>
-            Please check the search term `{searchTerm} ` is a correct city name
-            then try again
-          </p></div>
+            <button className={styles.errorBtn} onClick={() => setError('')}>
+              X
+            </button>
+            <p className={styles.error}>{error}</p>
+            <p>
+              Please check the search term `{searchTerm} ` is a correct city
+              name then try again
+            </p>
+          </div>
         </div>
       )}
       <div className={styles.date}>
@@ -66,10 +70,12 @@ function NavBar({ cityName }) {
         <div className={styles.userIcon}>
           <i className='fa-solid fa-user'></i>
         </div>
-        <p className={styles.userName}>Broka</p>
+        <p className={styles.userName}>UserName</p>
       </div>
     </nav>
   );
 }
 
-export default NavBar;
+NavBar.propTypes = {
+
+};
