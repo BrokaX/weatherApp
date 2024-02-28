@@ -1,0 +1,91 @@
+.wrapper{
+  border: solid lime;
+  width: 100%;
+  height: 40vh;
+  display: flex;
+  align-items: center;
+}
+.mainWeather {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(2px);
+  background-color: rgba(0, 0, 0, 0.565);
+  padding: .5rem;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: .8rem;
+  i{
+  color: var(--primary-text-color);
+  }
+}
+
+.icon{
+  position: relative;
+}
+.description{
+  font-size: .8rem;
+  position: absolute;
+  bottom: 0%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-transform: capitalize;
+}
+.degrees{
+  font-size: 3rem;
+  font-weight: bold;
+
+  &:after{
+    content: '°C';
+    font-size: 1rem;
+    font-weight: normal;
+    margin-bottom: 1rem;
+    line-height: 2rem;
+  }
+}
+
+.info { 
+   width: 90%;
+  height: 25%;
+  display: flex;
+  margin: 0 auto;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--accent-color);
+  background-color: rgba(5, 5, 5, 0.445);
+  border-radius: 5px;
+  margin-top: 1rem;
+  
+
+  
+}
+.row{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  }
+.column{
+  display: flex;
+  align-items: center;
+  width: 33%;
+  font-size: .7rem;
+}
+.faIcons{
+  border-left: solid 1px rgb(255, 255, 255);
+  color: var(--primary-text-color);
+  width: 2rem;
+}
+.wind{
+  margin-left: .4rem;
+  width: .7rem;
+  height: .7rem;
+  
+}

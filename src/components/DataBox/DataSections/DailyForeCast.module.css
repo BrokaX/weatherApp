@@ -1,0 +1,17 @@
+.container{
+  border: solid lime;
+  width: 100%;
+  height: 40vh;
+}
+.foreCast{
+  border: solid yellow;
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+.day  {
+  display: flex;
+  flex-direction: column;
+  border: solid red;
+  width: 100%;
+}

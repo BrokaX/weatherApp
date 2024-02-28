@@ -2,15 +2,14 @@ import { useState } from 'react';
 import styles from './SideBar.module.css';
 import logo from '/vite.svg';
 import PropTypes from 'prop-types';
-import { getWeather } from '../GetWeather';
 
-export default function SideBar({ cityWeather }) {
+export default function SideBar({ cityName }) {
   const cities = [
     'Athens',
     'Berlin',
     'London',
     'Paris',
-    'Rome',
+    'venice',
     'Tokyo',
     'Warsaw',
     'Moscow',
@@ -18,16 +17,13 @@ export default function SideBar({ cityWeather }) {
     'Budapest',
   ];
   const [active, setActive] = useState(false);
+
   const toggleActive = () => {
     setActive(!active);
   };
 
-  const results = async (e, cityName) => {
-    const weather = await getWeather(e, cityName);
-    if (typeof cityWeather === 'function') {
-      cityWeather(weather);
-    }
-    console.log(weather);
+  const results = (city) => {
+    cityName(city);
   };
 
 
@@ -35,7 +31,7 @@ export default function SideBar({ cityWeather }) {
   return (
     <section className={styles.container}>
       <div className={styles.logoBox}>
-        <img className={styles.logo} src={logo} alt='Broka-X logo' />
+        <img className={styles.logo} src={logo} alt='App logo' />
         <h1 className={styles.logoTitle}>Weather App</h1>
       </div>
       <nav>
@@ -49,7 +45,7 @@ export default function SideBar({ cityWeather }) {
         {active && (
           <ul className={styles.countries}>
             {cities.map((city) => (
-              <li key={city} onClick={(e) => { results(e, city);}}>
+              <li key={city} onClick={()=>results( city)}>
                 {city}
               </li>
             ))}
@@ -76,5 +72,5 @@ export default function SideBar({ cityWeather }) {
   );
 }
 SideBar.propTypes = {
-  cityWeather: PropTypes.func.isRequired,
+  cityName: PropTypes.func,
 };

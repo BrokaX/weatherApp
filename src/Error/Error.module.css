@@ -1,0 +1,38 @@
+.errorContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  transition: all 0.5s ease-in-out;
+}
+
+.errorBox {
+  position: relative;
+  z-index: 1;
+  width: 50%;
+  height: 20%;
+  border-radius: 5px;
+  border:  1px solid var(--primary-text-color);
+  background-color: var(--secondary-bg-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s ease-in-out;
+}
+.errorBtn{
+  position: absolute;
+  top: 5%;
+  right: 1%;
+}
+
+.reset{
+  width: 50%;
+  margin-top: 5%;
+}
