@@ -4,7 +4,7 @@ import SideBar from './components/SideBar/SideBar';
 import NavBar from './components/NavBar/NavBar';
 import DataBox from './components/DataBox/DataBox';
 import { getWeather } from './components/GetWeather';
-import { setLocalStorage } from './components/LocalStorage';
+import { setLocalStorage, addToLocalStorage } from './components/LocalStorage';
 import Error from './Error/Error';
 
 function App() {
@@ -28,6 +28,7 @@ function App() {
       }
       setResults(data);
       setLocalStorage(cityName, data);
+      addToLocalStorage('cityName', data);
     } catch (error) {
       setErrors(error);
     }

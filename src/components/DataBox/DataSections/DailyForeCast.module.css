@@ -1,17 +1,67 @@
 .container{
-  border: solid lime;
   width: 100%;
-  height: 40vh;
+  height: 84vh;
+  grid-row: span 2;
+  background-color: var(--secondary-bg-color);
+  border-radius: 15px;
 }
-.foreCast{
-  border: solid yellow;
+.forecast{
+  padding: 0 2% ;
   width: 100%;
   height: 100%;
-  display: flex;
+  
+
 }
-.day  {
+.list{
   display: flex;
   flex-direction: column;
-  border: solid red;
   width: 100%;
+  height: 100%;
+}
+.navigation{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 5rem;
+  padding: 3%;
+  color: var(--primary-text-color);
+  button{
+    width: 2rem;
+    height: 1.6rem;
+    padding: 1%;
+    font-size: 12px;
+  }
+}
+.day{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height:3.2rem; 
+  font-size: 14px;
+  text-align: center;
+  border-top: solid 1px var(--border-color);
+}
+
+.dayName{
+  font-size: 11px;
+  width: 100%;
+}
+.dayDate, 
+.description{
+  width: 100%;
+  color: var(--primary-text-color);
+}
+
+.dayDescription{
+  color: var(--secondary-text-color);
+}
+.iconContainer{
+  width: 100%;
+  img{
+    width: 50%;
+  }
 }

@@ -1,9 +1,9 @@
 :root {
-     --primary-bg-color: rgba(0, 0, 0, 0.6);
+  --primary-bg-color: rgb(1, 4, 9);
   --secondary-bg-color: rgb(17, 21, 27);
-  --primary-text-color: rgb(122, 138, 156);
+  --primary-text-color: #7a8a9c;
   --secondary-text-color: rgb(230, 237, 243);
-  --accent-color: rgb(92, 97, 103);
+  --accent-color: #5c6167;
   --border-color: rgba(92, 99, 107, 0.405);
 
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;

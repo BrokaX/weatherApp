@@ -13,6 +13,8 @@ export const getWeather = async (searchTerm) => {
     const forecast = await axios.get(
       `https://api.openweathermap.org/data/2.5/forecast?lat=${weather.coord.lat}&lon=${weather.coord.lon}&cnt=${cnt}&appid=${apiID}`
     );
+    
+    const dailyForeCast = await axios.get(  `https://api.openweathermap.org/data/2.5/forecast?q=${weather.name},${weather.sys.country}&appid=${apiID}`)
     const timezoneId = response.data.timezone;
 
     const currentTime = moment().utcOffset(timezoneId / 60);
@@ -34,6 +36,7 @@ export const getWeather = async (searchTerm) => {
       weather,
       date: { time, date, message },
       foreCast: forecast.data,
+      dailyForeCast: dailyForeCast.data,
       error: null,
     };
   } catch (error) {
@@ -46,40 +49,9 @@ export const getWeather = async (searchTerm) => {
   }
 };
 
-export const cityForecast = async (lat, lon, cnt) => {
-  try {
-    const response = await axios.get(
-      `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&cnt=${cnt}&appid=${apiID}`
-    );
-    console.log(response.data);
-    return response.data;
-  } catch (error) {
-    console.error(error.message);
-    return error.message;
-  }
-};
 
 // Hourly Forecast
-export const hourlyForecast = async (cityWeather, countryCode) => {
-  try {
-    const response = await axios.get(
-      `https://api.openweathermap.org/data/2.5/forecast?q=${cityWeather},${countryCode}&appid=${apiID}`
-    );
-    const hourlyForecast = response.list.slice(0, 24).map((hourData) => {
-      return {
-        time: new Date(hourData.dt * 1000).toLocaleTimeString(),
-        temperature: hourData.main.temp,
-        weatherDescription: hourData.weather[0].description,
-        precipitationProbability: hourData.pop,
-        windSpeed: hourData.wind.speed,
-        windDirection: hourData.wind.deg,
-      };
-    });
-    return hourlyForecast;
-  } catch (error) {
-    console.error('Error axios.geting hourly forecast:', error);
-  }
-};
+
 
 // Daily Forecast
 export const dailyForecast = async (city, countryCode) => {
@@ -147,35 +119,4 @@ export const historicalForecast = async (
   }
 };
 
-// Fetch current weather data along with timezone information
-export default async function getCurrentTime(city, countryCode) {
-  try {
-    const response = await axios.get(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city},${countryCode}&appid=${apiID}&units=metric`
-    );
-    const weather = response.data;
-    const timezoneId = response.data.timezone;
 
-    const currentTime = moment().utcOffset(timezoneId / 60);
-    const time = currentTime.format('LT');
-    const date = currentTime.format('ddd MMMM D, YYYY');
-
-    let message;
-
-    const hour = currentTime.hour();
-    if (hour >= 5 && hour < 12) {
-      message = 'Good morning';
-    } else if (hour >= 12 && hour < 17) {
-      message = 'Good afternoon';
-    } else {
-      message = 'Good evening';
-    }
-
-    return {
-      weather,
-      date: { time, date, message },
-    };
-  } catch (error) {
-    console.error('Error fetching weather data:', error);
-  }
-}
