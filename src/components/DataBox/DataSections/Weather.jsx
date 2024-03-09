@@ -31,6 +31,7 @@ function Weather({ weather }) {
             </dir>
             <div className={styles.icon}>
               <img
+                className={styles.iconImage}
                 key={'value'}
                 src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
                 alt='Weather icon'
@@ -39,9 +40,10 @@ function Weather({ weather }) {
                 {weather.weather[0].description}
               </h3>
             </div>
-
-            <h2 className={styles.degrees}>{Math.round(weather.main.temp)}</h2>
-            <h3>{weather.weather[0].main}</h3>
+            <div className={styles.degrees}>
+              <h2>{Math.round(weather.main.temp)}°C</h2>
+              <h3>{weather.weather[0].main}</h3>
+            </div>
 
             <div className={styles.info}>
               <div className={styles.row}>

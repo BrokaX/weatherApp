@@ -4,8 +4,10 @@ import SideBar from './components/SideBar/SideBar';
 import NavBar from './components/NavBar/NavBar';
 import DataBox from './components/DataBox/DataBox';
 import { getWeather } from './components/GetWeather';
-import { setLocalStorage, addToLocalStorage } from './components/LocalStorage';
+import { setLocalStorage } from './components/LocalStorage';
 import Error from './Error/Error';
+import Map from './components/Map/Map';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
   const [cityName, setCityName] = useState(null);
@@ -28,7 +30,6 @@ function App() {
       }
       setResults(data);
       setLocalStorage(cityName, data);
-      addToLocalStorage('cityName', data);
     } catch (error) {
       setErrors(error);
     }
@@ -41,16 +42,21 @@ function App() {
   }, [cityName]);
 
   return (
-    <div className='App'>
-      <NavBar cityName={getCityName} />
-      
-      <div className='app-container'>
-        <SideBar cityName={getCityName} />
-        
-        <DataBox weather={results} />
-        {errors ? <Error error={errors} reset={reset} /> : ''}
+    <Router>
+      <div className='App'>
+        <NavBar cityName={getCityName} />
+
+        <div className='app-container'>
+          <SideBar cityName={getCityName} />
+          <Routes>
+            <Route path='/' element={<DataBox weather={results} />} />
+            <Route path='/map' element={<Map />} />
+          </Routes>
+
+          {errors ? <Error error={errors} reset={reset} /> : ''}
+        </div>
       </div>
-    </div>
+    </Router>
   );
 }
 

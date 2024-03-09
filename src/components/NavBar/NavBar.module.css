@@ -60,7 +60,7 @@
   border-left: none;
   outline: none;
   background-color: var(--primary-text-color);
-  color: var(--secondary-bg-color);
+  color: var(--primary-bg-color);
   cursor: pointer;
   font-size: 12px;
 }

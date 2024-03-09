@@ -14,9 +14,12 @@ export const getWeather = async (searchTerm) => {
       `https://api.openweathermap.org/data/2.5/forecast?lat=${weather.coord.lat}&lon=${weather.coord.lon}&cnt=${cnt}&appid=${apiID}`
     );
     
-    const dailyForeCast = await axios.get(  `https://api.openweathermap.org/data/2.5/forecast?q=${weather.name},${weather.sys.country}&appid=${apiID}`)
+    const dailyForeCast = await axios.get(  
+      `https://api.openweathermap.org/data/2.5/forecast?q=${weather.name},${weather.sys.country}&appid=${apiID}`)
     const timezoneId = response.data.timezone;
-
+ const pollution = await axios.get(
+   `https://api.openweathermap.org/data/2.5/air_pollution?lat=${weather.coord.lat}&lon=${weather.coord.lon}&appid=${apiID}`
+ );
     const currentTime = moment().utcOffset(timezoneId / 60);
     const time = currentTime.format('LT');
     const date = currentTime.format('ddd MMMM D, YYYY');
@@ -37,6 +40,7 @@ export const getWeather = async (searchTerm) => {
       date: { time, date, message },
       foreCast: forecast.data,
       dailyForeCast: dailyForeCast.data,
+      pollution: pollution.data,
       error: null,
     };
   } catch (error) {
@@ -50,73 +54,7 @@ export const getWeather = async (searchTerm) => {
 };
 
 
-// Hourly Forecast
 
 
-// Daily Forecast
-export const dailyForecast = async (city, countryCode) => {
-  try {
-    const response = await axios.get(
-      `https://api.openweathermap.org/data/2.5/forecast/daily?q=${city},${countryCode}&appid=${apiID}`
-    );
-    const dailyForecast = response.list.map((dayData) => {
-      return {
-        date: new Date(dayData.dt * 1000).toLocaleDateString(),
-        maxTemperature: dayData.temp.max,
-        minTemperature: dayData.temp.min,
-        weatherDescription: dayData.weather[0].description,
-        precipitationProbability: dayData.pop,
-        windSpeed: dayData.speed,
-        windDirection: dayData.deg,
-        uvIndex: dayData.uvi,
-        moonPhase: dayData.moon_phase,
-      };
-    });
-    return dailyForecast;
-  } catch (error) {
-    console.error('Error getting daily forecast:', error);
-  }
-};
-
-// Weather Alerts (Example: Not all locations have alerts)
-export const alert = async (city, countryCode) => {
-  try {
-    const response = await axios.get(
-      `https://api.openweathermap.org/data/2.5/alerts?q=${city},${countryCode}&appid=${apiID}`
-    );
-    return response.data;
-  } catch (error) {
-    console.error('Error getting weather alerts:', error);
-  }
-};
-
-// Air Pollution Data
-export const airPllution = async (latitude, longitude) => {
-  try {
-    const response = axios.get(
-      `https://api.openweathermap.org/data/2.5/air_pollution?lat=${latitude}&lon=${longitude}&appid=${apiID}`
-    );
-    return response.data;
-  } catch (error) {
-    console.error('Error getting air pollution data:', error);
-  }
-};
-
-// Historical Weather Data
-export const historicalForecast = async (
-  latitude,
-  longitude,
-  startDate,
-  endDate
-) => {
-  try {
-    const response = await axios.get(
-      `https://api.openweathermap.org/data/2.5/onecall/timemachine?lat=${latitude}&lon=${longitude}&start=${startDate}&end=${endDate}&appid=${apiID}`
-    );
-    return response.data;
-  } catch (error) {
-    console.error('Error getting historical weather data:', error);
-  }
-};
 
 

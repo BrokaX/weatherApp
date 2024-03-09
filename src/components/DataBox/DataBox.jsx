@@ -10,6 +10,7 @@ function DataBox() {
   const [{ weather }, setWeather] = useState({});
   const [{ foreCast }, setForeCast] = useState({});
   const [{ dailyForeCast }, setDailyForeCast] = useState({});
+  const [{pollution}, setPollution] = useState({});
   const storageKey = localStorage.key(0);
 
   useEffect(() => {
@@ -17,6 +18,7 @@ function DataBox() {
       setWeather(getLocalStorage());
       setForeCast(getLocalStorage());
       setDailyForeCast(getLocalStorage());
+      setPollution(getLocalStorage());
     }
   }, [storageKey]);
 
@@ -24,8 +26,8 @@ function DataBox() {
     <section className={`${styles.container}`}>
       {weather && <Weather weather={weather} />}
       {foreCast && <DayTemp foreCast={foreCast} />}
-      {dailyForeCast && <DailyForeCast foreCast={dailyForeCast} />}{' '}
-      {weather && <Wind weather={weather} />}
+      {dailyForeCast && <DailyForeCast foreCast={dailyForeCast} />}
+      {pollution && <Wind pollution={pollution} />}
     </section>
   );
 }

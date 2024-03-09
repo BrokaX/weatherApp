@@ -2,18 +2,21 @@ import { useState } from 'react';
 import styles from './SideBar.module.css';
 import logo from '/vite.svg';
 import PropTypes from 'prop-types';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function SideBar({ cityName }) {
+  const [open, setOpen] = useState(true);
+  const navigate = useNavigate();
   const cities = [
     'Athens',
     'Berlin',
     'London',
     'Paris',
-    'venice',
+    'Minsk',
     'Tokyo',
     'Warsaw',
     'Moscow',
-    'New York',
+    'Setif',
     'Budapest',
   ];
   const [active, setActive] = useState(false);
@@ -24,12 +27,18 @@ export default function SideBar({ cityName }) {
 
   const results = (city) => {
     cityName(city);
+    navigate('/');
   };
 
-
+const toggleSidebar = () => {
+  setOpen(!open);
+}
 
   return (
-    <section className={styles.container}>
+    <section className={open?`${styles.open}`:styles.closed}>
+      <button onClick={toggleSidebar} className={styles.toggle}>
+        <i className={`fa-solid fa-angles-${open? 'left': 'right'}`}></i>
+      </button>
       <div className={styles.logoBox}>
         <img className={styles.logo} src={logo} alt='App logo' />
         <h1 className={styles.logoTitle}>Weather App</h1>
@@ -45,16 +54,18 @@ export default function SideBar({ cityName }) {
         {active && (
           <ul className={styles.countries}>
             {cities.map((city) => (
-              <li key={city} onClick={()=>results( city)}>
+              <li key={city} onClick={() => results(city)}>
                 {city}
               </li>
             ))}
           </ul>
         )}
-        <div className={styles.menuItem}>
-          <i className='fa-solid fa-map'></i>
-          <h1>Map</h1>
-        </div>
+        <Link to='/map'>
+          <div className={styles.menuItem}>
+            <i className='fa-solid fa-map'></i>
+            <h1>Map</h1>
+          </div>
+        </Link>
         <div className={styles.menuItem}>
           <i className='fa-solid fa-location'></i>
           <h1>Location</h1>

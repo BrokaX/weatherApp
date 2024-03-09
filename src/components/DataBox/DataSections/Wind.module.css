@@ -1,7 +1,58 @@
-.container{
+.container {
   width: 100%;
   height: 42vh;
   grid-column: span 2;
-  background-color: var(--secondary-bg-color);
+
   border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1%;
+}
+
+.section {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  background-color: var(--secondary-bg-color);
+  overflow-y: auto;
+}
+
+.data {
+  height: 20%;
+  padding: 1% 0;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.aqiContainer {
+  width: 80%;
+  height: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  margin: 3% auto;
+}
+
+.aqiBar {
+  height: 100%;
+  background-color: green; /* Default color */
+  color: var(--secondary-bg-color);
+  font-size: 13px;
+  text-align: center;
+  line-height: 1rem;
+  border-radius: 5px;
+}
+.details {
+  height: 80%;
+  padding: 0 5%;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  p {
+    border-bottom: solid 1px var(--border-color);
+    margin-bottom: 4%;
+    display: flex;
+    justify-content: space-between;
+  }
 }

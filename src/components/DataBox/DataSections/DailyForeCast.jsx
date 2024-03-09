@@ -46,11 +46,12 @@ function DailyForeCast({ foreCast }) {
             <button onClick={handlePrevPage}>
               <i className='fa-solid fa-arrow-left'></i>
             </button>
-            <div>10 days interval</div>
+            <div>5 days interval</div>
             <button onClick={handleNextPage}>
               <i className='fa-solid fa-arrow-right'></i>
             </button>
           </div>
+          <div className={styles.listItems}>
           {foreCast &&
             foreCast.list.slice(startIndex, endIndex).map((day) => (
               <div className={styles.day} key={day.dt}>
@@ -75,7 +76,7 @@ function DailyForeCast({ foreCast }) {
                 </div>
               </div>
             ))}
-        </div>
+        </div></div>
       </div>
     </section>
   );

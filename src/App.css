@@ -4,6 +4,39 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent-color) 
+                  var(--secondary-bg-color);
+
+}
+*::-webkit-scrollbar {
+	width: 5px; 
+	height: 5px;
+}
+
+*::-webkit-scrollbar-track {
+	background: var(--secondary-bg-color);
+}
+
+*::-webkit-scrollbar-thumb {
+	background: var(--primary-bg-color);
+	border-radius: 15px;
+	border: none;
+}
+
+/* FireFox */
+*::-moz-scrollbar {
+  width: thin;
+}
+
+*::-moz-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 15px;
+}
+
+*::-moz-scrollbar-track {
+  background-color: transparent;
+  border-radius: 5px;
 }
 
 .App{
@@ -18,25 +51,4 @@
   display: flex;
   width: 100%;
 }
-@media screen and (max-width: 562px) {
-  .sidebar {
-    padding-top: 15px;
-  }
-  .sidebar a {
-    font-size: 14px;
-  }
-  #date {
-    display: none;
-  }
-  .container {
-    font-size: smaller;
-    width: 90%;
-  }
-  input {
-    width: 50%;
-    margin-left: 100%;
-  }
-  #find {
-    display: none;
-  }
-}
+

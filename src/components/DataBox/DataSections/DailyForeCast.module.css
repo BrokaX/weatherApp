@@ -17,6 +17,10 @@
   flex-direction: column;
   width: 100%;
   height: 100%;
+  
+}
+.listItems{
+  overflow-y: auto;
 }
 .navigation{
   display: flex;
@@ -44,6 +48,7 @@
   font-size: 14px;
   text-align: center;
   border-top: solid 1px var(--border-color);
+  
 }
 
 .dayName{
