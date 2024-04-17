@@ -1,5 +1,6 @@
 import styles from './Wind.module.css';
 import PropTypes from 'prop-types';
+import Map from '../../Map/Map.jsx';
 
 function Wind({ pollution }) {
   
@@ -26,7 +27,7 @@ function Wind({ pollution }) {
   };
   return (
     <section className={styles.container}>
-      <div className={styles.section}>
+      <div className={styles.airQuality}>
         {pollution.list.map((data, index) => (
           <div key={index}>
             <div className={styles.data}>
@@ -80,9 +81,11 @@ function Wind({ pollution }) {
           </div>
         ))}
       </div>
-      <div className={styles.section}>SECTION</div>
-      <div className={styles.section}>SECTION</div>
-      <div className={styles.section}></div>
+      
+      <div className={styles.map}>
+        <div className={styles.overlay}></div>
+        <Map/>
+      </div>
     </section>
   );
 }
