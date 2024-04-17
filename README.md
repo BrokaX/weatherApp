@@ -1,6 +1,6 @@
 # Weather App
 
-This is a weather application built using React, Vite, and TypeScript. It allows users to check the current weather and forecast for different locations.
+This is a weather application built using React, Vite, and TypeScript. It allows users to check the current weather and forecast for different locations. [See Demo!](https://brokax.github.io/weatherApp/)
 
 ## Features
 
